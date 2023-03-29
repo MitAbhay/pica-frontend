@@ -6,16 +6,16 @@ import { TextInput, Button, RadioButton } from "react-native-paper";
 import { StyleSheet, Text, View } from "react-native";
 
 import { Field, Formik } from "formik";
+import { Link } from "@react-navigation/native";
 
 const initialValues = {
   roll: "",
   name: "",
-  gender: "",
   password: "",
 };
 
 export const Register = (props) => {
-  const [checked, setChecked] = React.useState("male");
+  const [gender, setGender] = React.useState("male");
 
   return (
     <View style={styles.container}>
@@ -39,21 +39,26 @@ export const Register = (props) => {
               onBlur={handleBlur("roll")}
               value={values.roll}
             />
-            <View>
-              <View style={{ display: "flex" }}>
-                u
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: 20,
+              }}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <RadioButton
                   value="male"
-                  status={checked === "male" ? "checked" : "unchecked"}
-                  onPress={() => setChecked("male")}
+                  status={gender === "male" ? "checked" : "unchecked"}
+                  onPress={() => setGender("male")}
                 />
                 <Text>Male</Text>
               </View>
-              <View>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <RadioButton
                   value="female"
-                  status={checked === "female" ? "checked" : "unchecked"}
-                  onPress={() => setChecked("female")}
+                  status={gender === "female" ? "checked" : "unchecked"}
+                  onPress={() => setGender("female")}
                 />
                 <Text>Female</Text>
               </View>
@@ -61,18 +66,36 @@ export const Register = (props) => {
             <TextInput
               style={styles.input}
               label="Password"
+              secureTextEntry
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
               value={values.password}
+              right={<TextInput.Icon icon="eye" />}
+            />
+            <TextInput
+              style={styles.input}
+              label="Confirm Password"
+              secureTextEntry
+              onChangeText={handleChange("cpassword")}
+              onBlur={handleBlur("cpassword")}
+              value={values.password}
+              right={<TextInput.Icon icon="eye" />}
             />
             <Button
               style={styles.button}
               icon="login"
               mode="contained"
-              onPress={handleSubmit}
+              onPress={() => handleSubmit(values, gender)}
             >
               Register
             </Button>
+            <View style={{ marginVertical: 40, marginLeft: 60 }}>
+              <Link to={{ screen: "Register" }}>
+                <Text style={{ color: "black" }}>
+                  Already have account? Log In !!
+                </Text>
+              </Link>
+            </View>
           </View>
         )}
       </Formik>

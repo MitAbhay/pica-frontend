@@ -16,9 +16,9 @@ const image = {
   uri: "https://preview.redd.it/h9lg8cblz6y01.png?auto=webp&s=e46c6a7a5762084c7802c6b9c107b5ab730991b7",
 };
 
-export default function Login(props) {
+export default function Login({ navigation }) {
   return (
-    <ImageBackground source={image} blurRadius={2} style={styles.background}>
+    <ImageBackground source={image} blurRadius={1.5} style={styles.background}>
       <View style={styles.form}>
         {/* <Text className="text-7xl text-center text-red-400">PICA</Text> */}
         <Formik
@@ -47,7 +47,10 @@ export default function Login(props) {
                 style={styles.button}
                 icon="login"
                 mode="contained"
-                onPress={handleSubmit}
+                onPress={() => {
+                  handleSubmit();
+                  navigation.navigate("Home");
+                }}
               >
                 Log In
               </Button>
