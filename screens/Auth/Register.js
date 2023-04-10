@@ -90,7 +90,7 @@ export const Register = (props) => {
               Register
             </Button>
             <View style={{ marginVertical: 40, marginLeft: 60 }}>
-              <Link to={{ screen: "Register" }}>
+              <Link to={{ screen: "Login" }}>
                 <Text style={{ color: "black" }}>
                   Already have account? Log In !!
                 </Text>
@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
   },
   container: {
     margin: 20,
+    marginTop: 130,
   },
   input: {
     backgroundColor: "white",

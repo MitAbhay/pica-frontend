@@ -1,36 +1,40 @@
 import React from "react";
 
 import { BottomNavigation, Text } from "react-native-paper";
-
-const MusicRoute = () => <Text>Music</Text>;
-
-const AlbumsRoute = () => <Text>Albums</Text>;
-
-const RecentsRoute = () => <Text>Recents</Text>;
-
-const NotificationsRoute = () => <Text>Notifications</Text>;
+import Attendence from "./Attendence/Attendence";
+import Emergency from "./Emergency";
+import Feedback from "./Feedback";
+import Result from "./Results";
+import OpenElective from "./OpenElective";
 
 const renderScene = BottomNavigation.SceneMap({
-  music: MusicRoute,
-  albums: AlbumsRoute,
-  recents: RecentsRoute,
-  notifications: NotificationsRoute,
+  attendence: Attendence,
+  feedback: Feedback,
+  result: Result,
+  // openelective: OpenElective,
+  emergency: Emergency,
 });
 
 export default function Home() {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {
-      key: "music",
-      title: "Favorites",
-      focusedIcon: "heart",
-      unfocusedIcon: "heart-outline",
+      key: "attendence",
+      title: "Attendence",
+      focusedIcon: "calendar",
+      unfocusedIcon: "calendar",
     },
-    { key: "albums", title: "Albums", focusedIcon: "album" },
-    { key: "recents", title: "Recents", focusedIcon: "history" },
+    { key: "feedback", title: "Feedback", focusedIcon: "album" },
+    { key: "result", title: "Result", focusedIcon: "history" },
+    // {
+    //   key: "openelective",
+    //   title: "Open Elective",
+    //   focusedIcon: "bell",
+    //   unfocusedIcon: "bell-outline",
+    // },
     {
-      key: "notifications",
-      title: "Notifications",
+      key: "emergency",
+      title: "Emergency",
       focusedIcon: "bell",
       unfocusedIcon: "bell-outline",
     },

@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   form: {
-    marginVertical: 120,
+    marginVertical: 190,
   },
   container: {
     margin: 40,
