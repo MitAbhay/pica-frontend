@@ -11,18 +11,29 @@ import CustomNavigationBar from "../Components/CustomNavigationBar";
 
 const Stack = createNativeStackNavigator();
 
+const screenOptions = {
+  header: (props) => <CustomNavigationBar {...props} />,
+};
+
 export default function RootNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          header: (props) => <CustomNavigationBar {...props} />,
-        }}
-        initialRouteName="Start"
-      >
-        <Stack.Screen name="Start" component={Start} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
+      <Stack.Navigator screenOptions={screenOptions} initialRouteName="Start">
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Start"
+          component={Start}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Login"
+          component={Login}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Register"
+          component={Register}
+        />
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>

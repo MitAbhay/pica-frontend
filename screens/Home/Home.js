@@ -3,7 +3,7 @@ import React from "react";
 import { BottomNavigation, Text } from "react-native-paper";
 import Attendence from "./Attendence/Attendence";
 import Emergency from "./Emergency";
-import Feedback from "./Feedback";
+import Feedback from "./Feedback/Feedback";
 import Result from "./Results";
 import OpenElective from "./OpenElective";
 

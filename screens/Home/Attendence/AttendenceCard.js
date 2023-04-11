@@ -1,89 +1,147 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Card, Button, Text } from "react-native-paper";
+import { Card, Button, Text, IconButton } from "react-native-paper";
 import { Svg, Circle } from "react-native-svg";
 
-const AttedenceCard = () => {
+const AttedenceCard = (props) => {
   const [presentCount, setPresentCount] = useState(0);
   const [absentCount, setAbsentCount] = useState(0);
 
   const handlePresentPress = () => {
     setPresentCount(presentCount + 1);
+    props.onAttendanceChange(presentCount, absentCount);
   };
 
   const handleAbsentPress = () => {
     setAbsentCount(absentCount + 1);
+    props.onAttendanceChange(presentCount, absentCount);
   };
 
   const percentage = (presentCount / (presentCount + absentCount)) * 100;
+  const totalClasses = presentCount + absentCount;
+  const remainingClasses = Math.ceil(
+    (0.75 * (presentCount + absentCount) - presentCount) / 0.25
+  );
+
   return (
     <Card style={styles.card}>
-      <View style={styles.header}>
-        <Text style={styles.subject}>Maths</Text>
-      </View>
-      <Card.Content>
-        <View style={styles.graph}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <View style={styles.header}>
+          <Text style={styles.subject}>{props.subject.subject}</Text>
           <View style={styles.attendence}>
             <Text style={styles.attendenceText}>Attendance :</Text>
             <Text style={styles.count}>
               {presentCount}/{presentCount + absentCount}
             </Text>
           </View>
-          <Svg style={styles.circle} width={100} height={100}>
+        </View>
+        <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+          <Svg style={styles.circle} width={70} height={60}>
             <Circle
-              cx="50"
-              cy="50"
-              r="30"
-              stroke="#2196F3"
-              strokeWidth="5"
+              cx="40"
+              cy="30"
+              r="27"
+              stroke={percentage >= 75 ? "green" : "red"}
+              strokeWidth="4"
               fill="none"
               strokeDasharray={`${percentage} ${100 - percentage}`}
-              strokeLinecap="round"
+              strokeLinecap="square"
             />
-            <Text style={styles.percentage}>{`${Math.round(
-              percentage
-            )}%`}</Text>
+            <Text style={styles.percentage}>
+              {totalClasses == 0 ? "0%" : `${Math.round(percentage)}%`}
+            </Text>
           </Svg>
-
-          <View style={styles.buttonContainer}>
-            <Button
-              mode="contained"
-              style={(styles.button, { height: 30, width: 75 })}
-              onPress={handlePresentPress}
-              compact
-            >
-              Present
-            </Button>
-            {/* <Button
-              mode="contained"
-              style={(styles.button, { height: 30, width: 30 })}
-              onPress={handleAbsentPress}
-              compact
-            >
-              Absent
-            </Button> */}
-          </View>
+          <IconButton style={{ margin: -5 }} icon="dots-vertical" />
         </View>
-      </Card.Content>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            width: 190,
+            alignContent: "center",
+            alignItems: "flex-start",
+          }}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 16 }}>Status :</Text>
+          <Text style={{ fontSize: 14, padding: 2 }}>
+            {totalClasses == 0
+              ? "No Classes started yet"
+              : percentage >= 75
+              ? "You are safe"
+              : `Attend ${remainingClasses} more classes for 75%`}
+          </Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            mode="elevated"
+            buttonColor="#198536"
+            textColor="white"
+            icon="check"
+            contentStyle={{
+              height: 30,
+              width: 30,
+              padding: 0,
+              margin: 0,
+            }}
+            labelStyle={{
+              margin: 0,
+              textAlign: "center",
+            }}
+            style={styles.button}
+            onPress={handlePresentPress}
+            compact
+          />
+          <Button
+            mode="elevated"
+            buttonColor="red"
+            textColor="white"
+            icon="close"
+            contentStyle={{
+              height: 30,
+              width: 30,
+              alignItems: "center",
+              alignContent: "center",
+            }}
+            style={styles.button}
+            onPress={handleAbsentPress}
+            compact
+          />
+        </View>
+      </View>
     </Card>
   );
 };
 
 const styles = StyleSheet.create({
   subject: {
-    fontSize: 20,
+    fontSize: 16,
+    fontWeight: "bold",
   },
   attendenceText: {
-    fontSize: 16,
+    fontSize: 12,
     marginRight: 5,
   },
   count: {
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "bold",
   },
   header: {
-    flexDirection: "row",
-    textAlign: "center",
-    justifyContent: "space-around",
+    paddingLeft: 4,
+    borderLeftColor: "red",
+    borderLeftWidth: 2,
   },
   card: {
     margin: 5,
@@ -92,29 +150,27 @@ const styles = StyleSheet.create({
   attendence: {
     flexDirection: "row",
     alignContent: "center",
+    alignItems: "center",
   },
   circle: {
-    marginVertical: 20,
+    height: 20,
   },
   percentage: {
+    textAlign: "center",
     position: "absolute",
     top: "50%",
     left: "50%",
-    transform: [{ translateX: -15 }, { translateY: 39 }],
+    transform: [{ translateX: -10 }, { translateY: 22 }],
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 14,
   },
-  graph: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
+
   buttonContainer: {
-    flexDirection: "column",
-    justifyContent: "space-around",
-    marginVertical: 20,
+    flexDirection: "row",
+    marginRight: 20,
   },
   button: {
-    fontSize: 5,
+    margin: 3,
   },
 });
 
