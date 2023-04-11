@@ -17,6 +17,8 @@ const initialValues = {
   comment: "",
 };
 
+const measures = ["Cleanliness", "Facilities", "Staff", "Location", "Comment"];
+
 const HOSTEL_ID = "123"; // Replace with your own hostel ID
 
 export default function HostelFeedback() {
@@ -40,10 +42,11 @@ export default function HostelFeedback() {
         setShowSnackbar(true);
         resetForm(initialValues);
       } else {
-        alert("Error submitting feedback");
+        alert(...values);
       }
     } catch (error) {
-      alert("Error submitting feedback");
+      console.log(values);
+      alert(values);
     }
     setIsSubmitting(false);
   };
@@ -53,69 +56,69 @@ export default function HostelFeedback() {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ handleChange, handleBlur, handleSubmit, values }) => (
           <View>
-            <View style={styles.radioGroup}>
-              <Text>Teaching Skills</Text>
-              <RadioButton
-                value="1"
-                status={values.cleanliness === "1" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("1")}
-              />
-              <RadioButton
-                value="2"
-                status={values.cleanliness === "2" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("2")}
-              />
-              <RadioButton
-                value="3"
-                status={values.cleanliness === "3" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("3")}
-              />
-              <RadioButton
-                value="4"
-                status={values.cleanliness === "4" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("4")}
-              />
-              <RadioButton
-                value="5"
-                status={values.cleanliness === "5" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("5")}
-              />
-            </View>
-            <View style={styles.radioGroup}>
-              <Text>Assignment</Text>
-              <RadioButton
-                value="1"
-                status={values.cleanliness === "1" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("1")}
-              />
-              <RadioButton
-                value="2"
-                status={values.cleanliness === "2" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("2")}
-              />
-              <RadioButton
-                value="3"
-                status={values.cleanliness === "3" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("3")}
-              />
-              <RadioButton
-                value="4"
-                status={values.cleanliness === "4" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("4")}
-              />
-              <RadioButton
-                value="5"
-                status={values.cleanliness === "5" ? "checked" : "unchecked"}
-                onPress={() => handleChange("cleanliness")("5")}
-              />
-            </View>
+            {measures.map((item) => {
+              return (
+                <View style={styles.radioGroup}>
+                  <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+                    {item}
+                  </Text>
+                  <View style={{ flexDirection: "row" }}>
+                    <RadioButton
+                      value="1"
+                      status={
+                        values[item.toLowerCase()] === "1"
+                          ? "checked"
+                          : "unchecked"
+                      }
+                      onPress={() => handleChange(item.toLowerCase())("1")}
+                    />
+                    <RadioButton
+                      value="2"
+                      status={
+                        values[item.toLowerCase()] === "2"
+                          ? "checked"
+                          : "unchecked"
+                      }
+                      onPress={() => handleChange(item.toLowerCase())("2")}
+                    />
+                    <RadioButton
+                      value="3"
+                      status={
+                        values[item.toLowerCase()] === "3"
+                          ? "checked"
+                          : "unchecked"
+                      }
+                      onPress={() => handleChange(item.toLowerCase())("3")}
+                    />
+                    <RadioButton
+                      value="4"
+                      status={
+                        values[item.toLowerCase()] === "4"
+                          ? "checked"
+                          : "unchecked"
+                      }
+                      onPress={() => handleChange(item.toLowerCase())("4")}
+                    />
+                    <RadioButton
+                      value="5"
+                      status={
+                        values[item.toLowerCase()] === "5"
+                          ? "checked"
+                          : "unchecked"
+                      }
+                      onPress={() => handleChange(item.toLowerCase())("5")}
+                    />
+                  </View>
+                </View>
+              );
+            })}
             <Button
               style={styles.button}
               mode="contained"
               onPress={handleSubmit}
-              loading={isSubmitting}
+              disabled={isSubmitting}
             >
-              Submit
+              Submit Feedback
             </Button>
           </View>
         )}
@@ -143,6 +146,7 @@ const styles = StyleSheet.create({
   radioGroup: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: 10,
   },
   button: {
