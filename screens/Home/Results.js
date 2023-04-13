@@ -19,7 +19,7 @@ export default function StudentDetails({ rollNumber }) {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `https://nith-results-api.deta.dev/student/20bcs029`
+          `https://nith-results-api.deta.dev/student/20bcs013`
         );
         const data = response.data;
         setStudentData(data);
@@ -70,6 +70,7 @@ export default function StudentDetails({ rollNumber }) {
             </View>
           </Card>
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
+            {/* <Text>semester</Text> */}
             {filters.map((filterValue) => (
               <IconButton
                 key={filterValue}

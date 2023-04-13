@@ -38,29 +38,29 @@ export default function HostelFeedback() {
   const [showSnackbar, setShowSnackbar] = React.useState(false);
 
   const handleSubmit = async (values, { resetForm }) => {
+    // setIsSubmitting(true);
+    // try {
+    //   const response = await fetch(
+    //     `https://example.com/api/feedback/${HOSTEL_ID}`,
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify(values),
+    //     }
+    //   );
+    //   if (response.ok) {
+    setShowSnackbar(true);
+    resetForm(initialValues);
+    //   } else {
+    //     alert(...values);
+    //   }
+    // } catch (error) {
+    //   console.log(values);
+    //   alert(values);
+    // }
     setIsSubmitting(true);
-    try {
-      const response = await fetch(
-        `https://example.com/api/feedback/${HOSTEL_ID}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        }
-      );
-      if (response.ok) {
-        setShowSnackbar(true);
-        resetForm(initialValues);
-      } else {
-        alert(...values);
-      }
-    } catch (error) {
-      console.log(values);
-      alert(values);
-    }
-    setIsSubmitting(false);
   };
 
   return (
@@ -138,6 +138,7 @@ export default function HostelFeedback() {
         )}
       </Formik>
       <Snackbar
+        style={{ marginBottom: 270, marginLeft: 50 }}
         visible={showSnackbar}
         onDismiss={() => setShowSnackbar(false)}
         duration={3000}

@@ -76,9 +76,9 @@ export default function AttendanceDetails(props) {
 
 const styles = StyleSheet.create({
   card: {
-    marginTop: 30,
-    padding: 6,
-    margin: 3,
+    marginTop: 20,
+    padding: 8,
+    margin: 8,
   },
   subject: {
     fontSize: 16,
