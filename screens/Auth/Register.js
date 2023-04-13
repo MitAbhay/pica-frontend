@@ -12,15 +12,22 @@ const initialValues = {
   roll: "",
   username: "",
   password: "",
+  cpassword: "",
 };
 
 export const Register = ({ navigation }) => {
   const [gender, setGender] = React.useState("male");
   const [showSnackbar1, setShowSnackbar1] = useState(false);
   const [showSnackbar2, setShowSnackbar2] = useState(false);
+  const [showSnackbar3, setShowSnackbar3] = useState(false);
 
   const onSubmit = (values) => {
     console.log(JSON.stringify(values));
+
+    if (values.password !== values.cpassword) {
+      setShowSnackbar3(true);
+      return;
+    }
     fetch("https://pica.onrender.com/auth/signup", {
       method: "POST",
       headers: {
@@ -63,6 +70,14 @@ export const Register = ({ navigation }) => {
         duration={3000}
       >
         Username or Roll Number is already in use
+      </Snackbar>
+      <Snackbar
+        style={{ marginBottom: 600, marginLeft: 10 }}
+        visible={showSnackbar3}
+        onDismiss={() => setShowSnackbar3(false)}
+        duration={3000}
+      >
+        Password does noth match
       </Snackbar>
       <Formik
         initialValues={initialValues}
@@ -123,7 +138,7 @@ export const Register = ({ navigation }) => {
               secureTextEntry
               onChangeText={handleChange("cpassword")}
               onBlur={handleBlur("cpassword")}
-              value={values.password}
+              value={values.cpassword}
               right={<TextInput.Icon icon="eye" />}
             />
             <Button
