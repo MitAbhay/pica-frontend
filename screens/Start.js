@@ -21,7 +21,7 @@ export default function Start({ navigation }) {
       <ActivityIndicator
         size="large"
         animating={true}
-        color={MD2Colors.red800}
+        color={MD2Colors.yellow600}
       />
     </View>
   );

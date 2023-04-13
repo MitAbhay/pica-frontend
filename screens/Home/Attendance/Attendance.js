@@ -197,10 +197,10 @@ const AttendanceScreen = ({ navigation }) => {
                 />
               }
             >
-              <Menu.Item onPress={() => {}} title="Item 1" />
-              <Menu.Item onPress={() => {}} title="Item 2" />
-              <Divider />
-              <Menu.Item onPress={() => {}} title="Item 3" />
+              <Menu.Item onPress={() => {}} title="Edit Goal" />
+              {/* <Menu.Item onPress={() => {}} title="Item 2" /> */}
+              {/* <Divider /> */}
+              {/* <Menu.Item onPress={() => {}} title="Item 3" /> */}
             </Menu>
           </View>
         </View>

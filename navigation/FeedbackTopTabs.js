@@ -11,7 +11,6 @@ export default function FeedbackTopTabs() {
       screenOptions={{
         tabBarActiveTintColor: "black",
         tabBarLabelStyle: { fontSize: 18 },
-        tabBarStyle: { backgroundColor: "yellow" },
       }}
     >
       <Tab.Screen

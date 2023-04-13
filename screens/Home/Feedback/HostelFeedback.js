@@ -56,9 +56,9 @@ export default function HostelFeedback() {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ handleChange, handleBlur, handleSubmit, values }) => (
           <View>
-            {measures.map((item) => {
+            {measures.map((item, index) => {
               return (
-                <View style={styles.radioGroup}>
+                <View key={index} style={styles.radioGroup}>
                   <Text style={{ fontWeight: "bold", fontSize: 18 }}>
                     {item}
                   </Text>
@@ -137,8 +137,7 @@ export default function HostelFeedback() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: "#fff",
+    padding: 25,
   },
   input: {
     marginBottom: 16,
