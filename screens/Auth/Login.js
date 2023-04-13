@@ -17,13 +17,31 @@ const image = {
 };
 
 export default function Login({ navigation }) {
+  const onSubmit = (values) => {
+    console.log(JSON.stringify(values));
+    fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        navigation.navigate("Home");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
   return (
     <ImageBackground source={image} blurRadius={1.5} style={styles.background}>
       <View style={styles.form}>
         {/* <Text className="text-7xl text-center text-red-400">PICA</Text> */}
         <Formik
           initialValues={initialValues}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => onSubmit(values)}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View style={styles.container}>

@@ -1,20 +1,32 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Card, Button, Text, IconButton } from "react-native-paper";
+import {
+  Card,
+  Button,
+  Text,
+  IconButton,
+  Menu,
+  Divider,
+} from "react-native-paper";
 import { Svg, Circle } from "react-native-svg";
 
 const AttedenceCard = (props) => {
   const [presentCount, setPresentCount] = useState(0);
   const [absentCount, setAbsentCount] = useState(0);
-
+  const [visible, setVisible] = useState(false);
+  const openMenu = () => {
+    setVisible(true);
+    console.log("open");
+  };
+  const closeMenu = () => setVisible(false);
   const handlePresentPress = () => {
     setPresentCount(presentCount + 1);
-    props.onAttendanceChange(presentCount, absentCount);
+    props.onAttendanceChange(presentCount + 1, absentCount);
   };
 
   const handleAbsentPress = () => {
     setAbsentCount(absentCount + 1);
-    props.onAttendanceChange(presentCount, absentCount);
+    props.onAttendanceChange(presentCount, absentCount + 1);
   };
 
   const percentage = (presentCount / (presentCount + absentCount)) * 100;
@@ -57,7 +69,27 @@ const AttedenceCard = (props) => {
               {totalClasses == 0 ? "0%" : `${Math.round(percentage)}%`}
             </Text>
           </Svg>
-          <IconButton style={{ margin: -5 }} icon="dots-vertical" />
+          <Menu
+            visible={visible}
+            onDismiss={closeMenu}
+            anchor={
+              <IconButton
+                onPress={openMenu}
+                style={{ margin: -5 }}
+                icon="dots-vertical"
+              />
+            }
+          >
+            <Menu.Item onPress={() => {}} title="Undo" />
+            <Menu.Item
+              onPress={() => {
+                props.onDeleteSubject();
+              }}
+              title="Delete Subject "
+            />
+            <Menu.Item onPress={() => {}} title="Edit" />
+            <Menu.Item onPress={() => {}} title="Reset" />
+          </Menu>
         </View>
       </View>
       <View
@@ -85,39 +117,19 @@ const AttedenceCard = (props) => {
           </Text>
         </View>
         <View style={styles.buttonContainer}>
-          <Button
-            mode="elevated"
-            buttonColor="#198536"
-            textColor="white"
+          <IconButton
             icon="check"
-            contentStyle={{
-              height: 30,
-              width: 30,
-              padding: 0,
-              margin: 0,
-            }}
-            labelStyle={{
-              margin: 0,
-              textAlign: "center",
-            }}
-            style={styles.button}
-            onPress={handlePresentPress}
-            compact
+            containerColor="green"
+            iconColor="black"
+            size={15}
+            onPress={() => handlePresentPress()}
           />
-          <Button
-            mode="elevated"
-            buttonColor="red"
-            textColor="white"
+          <IconButton
             icon="close"
-            contentStyle={{
-              height: 30,
-              width: 30,
-              alignItems: "center",
-              alignContent: "center",
-            }}
-            style={styles.button}
-            onPress={handleAbsentPress}
-            compact
+            containerColor="red"
+            iconColor="black"
+            size={15}
+            onPress={() => handleAbsentPress()}
           />
         </View>
       </View>
@@ -167,7 +179,7 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     flexDirection: "row",
-    marginRight: 20,
+    marginRight: 15,
   },
   button: {
     margin: 3,

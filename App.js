@@ -1,6 +1,5 @@
 import RootNavigator from "./navigation/RootNavigator";
 import { Provider as PaperProvider } from "react-native-paper";
-import { ProfileDrawer } from "./Components/Drawer";
 
 const theme = {
   colors: {

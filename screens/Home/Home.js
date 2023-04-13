@@ -1,11 +1,12 @@
 import React from "react";
 
-import { BottomNavigation, Text } from "react-native-paper";
+import { BottomNavigation, Drawer, Text } from "react-native-paper";
 import Attendence from "./Attendence/Attendence";
 import Emergency from "./Emergency";
 import Feedback from "./Feedback/Feedback";
 import Result from "./Results";
 import OpenElective from "./OpenElective";
+import DrawerHome from "../../Components/DrawerHome";
 
 const renderScene = BottomNavigation.SceneMap({
   attendence: Attendence,
@@ -16,6 +17,8 @@ const renderScene = BottomNavigation.SceneMap({
 });
 
 export default function Home() {
+  const [active, setActive] = React.useState("");
+
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {
@@ -41,10 +44,24 @@ export default function Home() {
   ]);
 
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
+    <>
+      {/* <Drawer.Section title="Some title">
+        <Drawer.Item
+          label="First Item"
+          active={active === "first"}
+          onPress={() => setActive("first")}
+        />
+        <Drawer.Item
+          label="Second Item"
+          active={active === "second"}
+          onPress={() => setActive("second")}
+        />
+      </Drawer.Section> */}
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+      />
+    </>
   );
 }
