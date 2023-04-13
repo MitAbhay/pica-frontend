@@ -16,20 +16,45 @@ const AttedanceCard = (props) => {
   const [presentCount, setPresentCount] = useState(props.subject.presentCount);
   const [absentCount, setAbsentCount] = useState(props.subject.absentCount);
   const [visible, setVisible] = useState(false);
+  const [present, setPresent] = useState(false);
+  const [absent, setAbsent] = useState(false);
+
   const openMenu = () => {
     setVisible(true);
   };
   const closeMenu = () => setVisible(false);
   const handlePresentPress = () => {
     setPresentCount(presentCount + 1);
+    setPresent(true);
+    setAbsent(false);
     props.onAttendanceChange(presentCount + 1, absentCount);
   };
 
   const handleAbsentPress = () => {
     setAbsentCount(absentCount + 1);
+    setPresent(false);
+    setAbsent(true);
     props.onAttendanceChange(presentCount, absentCount + 1);
   };
 
+  const handleUndo = () => {
+    if (present === true) {
+      setPresentCount(presentCount - 1);
+      props.onAttendanceChange(presentCount - 1, absentCount);
+    }
+    if (absent === true) {
+      setAbsentCount(absentCount - 1);
+      props.onAttendanceChange(presentCount, absentCount - 1);
+    }
+    closeMenu();
+  };
+
+  const handleReset = () => {
+    setPresentCount(0);
+    setAbsentCount(0);
+    props.onAttendanceChange(0, 0);
+    closeMenu();
+  };
   const percentage = (presentCount / (presentCount + absentCount)) * 100;
   const totalClasses = presentCount + absentCount;
   const remainingClasses = Math.ceil(
@@ -84,15 +109,15 @@ const AttedanceCard = (props) => {
               />
             }
           >
-            <Menu.Item onPress={() => {}} title="Undo" />
+            <Menu.Item onPress={() => handleUndo()} title="Undo" />
             <Menu.Item
               onPress={() => {
                 props.onDeleteSubject();
               }}
               title="Delete"
             />
-            <Menu.Item onPress={() => {}} title="Edit" />
-            <Menu.Item onPress={() => {}} title="Reset" />
+            {/* <Menu.Item onPress={() => {}} title="Edit" /> */}
+            <Menu.Item onPress={() => handleReset()} title="Reset" />
           </Menu>
         </View>
       </View>
