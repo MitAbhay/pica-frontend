@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BottomNavigation, Drawer, Text } from "react-native-paper";
-import Attendence from "./Attendence/Attendence";
+import Attendance from "./Attendance/Attendance";
 import Emergency from "./Emergency";
 import Feedback from "./Feedback/Feedback";
 import Result from "./Results";
@@ -9,7 +9,7 @@ import OpenElective from "./OpenElective";
 import DrawerHome from "../../Components/DrawerHome";
 
 const renderScene = BottomNavigation.SceneMap({
-  attendence: Attendence,
+  attendance: Attendance,
   feedback: Feedback,
   result: Result,
   // openelective: OpenElective,
@@ -22,8 +22,8 @@ export default function Home() {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {
-      key: "attendence",
-      title: "Attendence",
+      key: "attendance",
+      title: "Attendance",
       focusedIcon: "calendar",
       unfocusedIcon: "calendar",
     },

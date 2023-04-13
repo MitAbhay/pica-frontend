@@ -34,7 +34,7 @@ export default function CustomNavigationBar(props) {
           <Avatar.Image
             style={{}}
             size={24}
-            source={require("../assets/favicon.png")}
+            source={require("../assets/mitabhay.jpeg")}
           />
           <Text
             style={{

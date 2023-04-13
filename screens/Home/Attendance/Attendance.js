@@ -14,32 +14,41 @@ import {
   TextInput,
 } from "react-native-paper";
 import { Circle, Svg } from "react-native-svg";
-import AttedenceCard from "./AttendenceCard";
+import AttedanceCard from "./AttendanceCard";
 
-const AttendanceScreen = () => {
+const AttendanceScreen = ({ navigation }) => {
+  console.log(navigation);
   const [subjects, setSubjects] = useState([
     {
       subject: "Software Engineering",
-      presentCount: 0,
+      presentCount: 5,
       absentCount: 0,
+      presentDates: ["2023-04-12", "2023-04-14", "2023-04-11", "2023-04-10"],
+      absentDates: [],
       totalClasses: 0,
     },
     {
       subject: "Computer Networks",
       presentCount: 0,
-      absentCount: 0,
+      absentCount: 9,
+      presentDates: [],
+      absentDates: [],
       totalClasses: 0,
     },
     {
       subject: "Distributed Systems",
       presentCount: 0,
       absentCount: 0,
+      presentDates: [],
+      absentDates: [],
       totalClasses: 0,
     },
     {
       subject: "Digital Image Processing",
       presentCount: 0,
       absentCount: 0,
+      presentDates: [],
+      absentDates: [],
       totalClasses: 0,
     },
   ]);
@@ -103,10 +112,16 @@ const AttendanceScreen = () => {
   const [overallPercentage, setOverallPercentage] = useState(0);
 
   const handleSubjectAttendanceChange = (index, presentCount, absentCount) => {
-    console.log(index);
+    // console.log(index);
     const newSubjects = [...subjects];
     const totalClasses = presentCount + absentCount;
     const percentage = (presentCount / totalClasses) * 100;
+    const today = new Date().toISOString().slice(0, 10);
+    if (presentCount > newSubjects[index].presentCount) {
+      newSubjects[index].presentDates.push(today);
+    } else if (absentCount > newSubjects[index].absentCount) {
+      newSubjects[index].absentDates.push(today);
+    }
     newSubjects[index].presentCount = presentCount;
     newSubjects[index].absentCount = absentCount;
     newSubjects[index].totalClasses = totalClasses;
@@ -122,11 +137,12 @@ const AttendanceScreen = () => {
     const totalClassesAttended = totalPresent + totalAbsent;
     const overallPercentage = (totalPresent / totalClassesAttended) * 100;
     setOverallPercentage(overallPercentage);
+    console.log(subjects);
   };
 
   return (
     <View style={styles.container}>
-      <Card style={styles.card}>
+      <Card elevation={5} style={styles.card}>
         <View
           style={{
             flexDirection: "row",
@@ -252,7 +268,7 @@ const AttendanceScreen = () => {
       </Card>
       <ScrollView>
         {subjects.map((subject, index) => (
-          <AttedenceCard
+          <AttedanceCard
             key={subject.subject}
             subject={subject}
             onAttendanceChange={(presentCount, absentCount) =>

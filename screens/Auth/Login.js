@@ -67,7 +67,7 @@ export default function Login({ navigation }) {
                 mode="contained"
                 onPress={() => {
                   handleSubmit();
-                  navigation.navigate("Home");
+                  navigation.push("Home");
                 }}
               >
                 Log In

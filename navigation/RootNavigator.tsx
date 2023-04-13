@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Start from "../screens/Start";
 import Home from "../screens/Home/Home";
 import CustomNavigationBar from "../Components/CustomNavigationBar";
+import AttendanceDetails from "../screens/Home/Attendance/AttendanceDetails";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,7 @@ export default function RootNavigator() {
           component={Register}
         />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="AttendanceDetails" component={AttendanceDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );

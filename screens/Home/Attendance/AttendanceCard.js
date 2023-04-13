@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import {
@@ -10,13 +11,13 @@ import {
 } from "react-native-paper";
 import { Svg, Circle } from "react-native-svg";
 
-const AttedenceCard = (props) => {
-  const [presentCount, setPresentCount] = useState(0);
-  const [absentCount, setAbsentCount] = useState(0);
+const AttedanceCard = (props) => {
+  const navigation = useNavigation();
+  const [presentCount, setPresentCount] = useState(props.subject.presentCount);
+  const [absentCount, setAbsentCount] = useState(props.subject.absentCount);
   const [visible, setVisible] = useState(false);
   const openMenu = () => {
     setVisible(true);
-    console.log("open");
   };
   const closeMenu = () => setVisible(false);
   const handlePresentPress = () => {
@@ -36,7 +37,10 @@ const AttedenceCard = (props) => {
   );
 
   return (
-    <Card style={styles.card}>
+    <Card
+      onPress={() => navigation.navigate("AttendanceDetails", props.subject)}
+      style={styles.card}
+    >
       <View
         style={{
           flexDirection: "row",
@@ -85,7 +89,7 @@ const AttedenceCard = (props) => {
               onPress={() => {
                 props.onDeleteSubject();
               }}
-              title="Delete Subject "
+              title="Delete"
             />
             <Menu.Item onPress={() => {}} title="Edit" />
             <Menu.Item onPress={() => {}} title="Reset" />
@@ -186,4 +190,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AttedenceCard;
+export default AttedanceCard;
