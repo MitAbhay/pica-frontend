@@ -1,7 +1,7 @@
 // Formik x React Native example
 
-import React from "react";
-import { TextInput, Button } from "react-native-paper";
+import React, { useState } from "react";
+import { TextInput, Button, Snackbar } from "react-native-paper";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
 import { Formik } from "formik";
@@ -17,9 +17,10 @@ const image = {
 };
 
 export default function Login({ navigation }) {
+  const [showSnackbar, setShowSnackbar] = useState(false);
   const onSubmit = (values) => {
     console.log(JSON.stringify(values));
-    fetch("http://localhost:3000/auth/login", {
+    fetch("https://pica.onrender.com/auth/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +30,14 @@ export default function Login({ navigation }) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        navigation.navigate("Home");
+        if (data.id) {
+          navigation.navigate("Home", {
+            roll: data.roll,
+            username: data.username,
+          });
+        } else {
+          setShowSnackbar(true);
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -39,6 +47,14 @@ export default function Login({ navigation }) {
     <ImageBackground source={image} blurRadius={1.5} style={styles.background}>
       <View style={styles.form}>
         {/* <Text className="text-7xl text-center text-red-400">PICA</Text> */}
+        <Snackbar
+          style={{ marginBottom: 310, marginLeft: 10 }}
+          visible={showSnackbar}
+          onDismiss={() => setShowSnackbar(false)}
+          duration={3000}
+        >
+          Invalid username or password
+        </Snackbar>
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => onSubmit(values)}
@@ -67,7 +83,7 @@ export default function Login({ navigation }) {
                 mode="contained"
                 onPress={() => {
                   handleSubmit();
-                  navigation.push("Home");
+                  // navigation.push("Home");
                 }}
               >
                 Log In

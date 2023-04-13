@@ -1,3 +1,4 @@
+import { useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import {
@@ -17,7 +18,8 @@ import { Circle, Svg } from "react-native-svg";
 import AttedanceCard from "./AttendanceCard";
 
 const AttendanceScreen = ({ navigation }) => {
-  console.log(navigation);
+  const route = useRoute();
+  console.log(route.params);
   const [subjects, setSubjects] = useState([
     {
       subject: "Software Engineering",

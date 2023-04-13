@@ -1,8 +1,10 @@
+import { useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import { Text, View } from "react-native";
 import { Appbar, Avatar } from "react-native-paper";
 
 export default function CustomNavigationBar(props) {
+  const route = useRoute();
   const [currentDate, setCurrentDate] = useState(
     new Date().toLocaleDateString("en-US", {
       day: "numeric",
@@ -34,7 +36,7 @@ export default function CustomNavigationBar(props) {
           <Avatar.Image
             style={{}}
             size={24}
-            source={require("../assets/mitabhay.jpeg")}
+            source={require("../assets/favicon.png")}
           />
           <Text
             style={{
@@ -44,7 +46,7 @@ export default function CustomNavigationBar(props) {
               marginLeft: 10,
             }}
           >
-            Abhay Mittal
+            {route.params.username == "" ? "MitAbhay" : route.params.username}
           </Text>
         </View>
       </View>

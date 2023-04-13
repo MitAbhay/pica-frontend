@@ -11,15 +11,19 @@ import {
   IconButton,
   MD2Colors,
 } from "react-native-paper";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-export default function StudentDetails({ rollNumber }) {
+export default function Results() {
+  const route = useRoute();
   const [studentData, setStudentData] = useState(null);
   const [semester, setSemester] = useState(1);
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `https://nith-results-api.deta.dev/student/20bcs013`
+          `https://nith-results-api.deta.dev/student/${
+            route.params.roll == "" ? "20bcs013" : route.params.roll
+          }`
         );
         const data = response.data;
         setStudentData(data);
@@ -28,7 +32,7 @@ export default function StudentDetails({ rollNumber }) {
       }
     }
     fetchData();
-  }, [rollNumber]);
+  }, []);
 
   const [selectedButton, setSelectedButton] = useState(1);
   const filters = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -81,7 +85,7 @@ export default function StudentDetails({ rollNumber }) {
                   <Badge
                     size={30}
                     visible={true}
-                    style={{ backgroundColor: "none", color: "black" }}
+                    style={{ backgroundColor: null, color: "black" }}
                   >
                     {filterValue}
                   </Badge>
