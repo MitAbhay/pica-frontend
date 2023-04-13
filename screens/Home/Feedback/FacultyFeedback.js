@@ -17,7 +17,14 @@ const initialValues = {
   comment: "",
 };
 
-const measures = ["Cleanliness", "Facilities", "Staff", "Location", "Comment"];
+const measures = [
+  "Ability to Engage Students",
+  "Response to Students",
+  "Fairness in Grades",
+  "Availability",
+  "Pace of Teaching",
+  "Subject Expertise",
+];
 
 const HOSTEL_ID = "123"; // Replace with your own hostel ID
 
@@ -59,7 +66,9 @@ export default function FeedbackForm() {
             {measures.map((item, index) => {
               return (
                 <View key={index} style={styles.radioGroup}>
-                  <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+                  <Text
+                    style={{ fontWeight: "bold", fontSize: 16, width: 140 }}
+                  >
                     {item}
                   </Text>
                   <View style={{ flexDirection: "row" }}>

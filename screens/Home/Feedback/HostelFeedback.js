@@ -11,13 +11,25 @@ import { Formik } from "formik";
 
 const initialValues = {
   cleanliness: "",
-  facilities: "",
-  staff: "",
-  location: "",
-  comment: "",
+  foodQuality: "",
+  staffQality: "",
+  waterFacility: "",
+  internetFacility: "",
+  checkIncheckOut: "",
+  washroomMaintainance: "",
+  securityServices: "",
 };
 
-const measures = ["Cleanliness", "Facilities", "Staff", "Location", "Comment"];
+const measures = [
+  "Cleanliness",
+  "Food Quality",
+  "Staff Quality",
+  "Water Facility",
+  "Internet Facility",
+  "CheckIn Check Out",
+  "Washroom Maintenance",
+  "Security Services",
+];
 
 const HOSTEL_ID = "123"; // Replace with your own hostel ID
 
@@ -59,7 +71,9 @@ export default function HostelFeedback() {
             {measures.map((item, index) => {
               return (
                 <View key={index} style={styles.radioGroup}>
-                  <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+                  <Text
+                    style={{ fontWeight: "bold", fontSize: 16, width: 140 }}
+                  >
                     {item}
                   </Text>
                   <View style={{ flexDirection: "row" }}>
