@@ -26,6 +26,7 @@ const importantData = [
   { office: "Police Station ", number: "01972-224306 " },
   { office: "Railway Station (UNA) ", number: "01975-223522 " },
   { office: "Airport (Gaggal) Kangra ", number: "01892-232374 " },
+  { office: "Taxi", number: "9459117986" },
 ];
 export default function Emergency({ roll }) {
   return (

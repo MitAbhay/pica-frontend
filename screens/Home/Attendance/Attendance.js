@@ -66,10 +66,17 @@ const AttendanceScreen = ({ navigation }) => {
     setNewSubject((prevSubject) => ({ ...prevSubject, subject: text }));
   };
   const handleTotalPresentChange = (text) => {
-    setNewSubject((prevSubject) => ({ ...prevSubject, presentCount: text }));
+    setNewSubject((prevSubject) => ({
+      ...prevSubject,
+      presentCount: Number(text),
+    }));
   };
   const handleTotalAbsentChange = (text) => {
-    setNewSubject((prevSubject) => ({ ...prevSubject, absentCount: text }));
+    // console.log(typeof Number(text));
+    setNewSubject((prevSubject) => ({
+      ...prevSubject,
+      absentCount: Number(text),
+    }));
   };
 
   const handleAddSubject = () => {
@@ -245,12 +252,14 @@ const AttendanceScreen = ({ navigation }) => {
                   onChangeText={handleSubjectNameChange}
                 />
                 <TextInput
+                  type={Number}
                   label="Total Present"
                   keyboardType="numeric"
                   value={newSubject.presentCount}
                   onChangeText={handleTotalPresentChange}
                 />
                 <TextInput
+                  type={Number}
                   label="Total Absent"
                   keyboardType="numeric"
                   value={newSubject.absentCount}
