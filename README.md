@@ -1,11 +1,16 @@
 # PICA (A student Portal for [NITH](http://nith.ac.in/) )
+
 <!-- ABOUT THE PROJECT -->
 
 # About The Project
 
 <div align="center">
-<img src="./public/s1.png" alt="ss" width="450" height="270">
-<img src="./public/s2.png" alt="ss" width="450" height="270">
+<img src="./assets/1.jpeg" alt="ss" width="150" height="310">
+<img src="./assets/2.jpeg" alt="ss" width="150" height="310">
+<img src="./assets/3.jpeg" alt="ss" width="150" height="310">
+<img src="./assets/4.jpeg" alt="ss" width="150" height="310">
+<img src="./assets/5.jpeg" alt="ss" width="150" height="310">
+<img src="./assets/6.jpeg" alt="ss" width="150" height="310">
 </div>
 <br />
 
@@ -16,35 +21,36 @@ streamline academic processes, facilitate communication, and
 promote collaboration among stakeholders.
 
 - The Student Portal provides an easy-to-use attendance
-management system that enables students to keep track of
-their attendance records, view their attendance history, and
-get notified in case of any discrepancies. The system
-ensures that attendance data is accurate and accessible,
-enabling faculty and staff to make informed decisions
-regarding academic progress and student engagement.
+  management system that enables students to keep track of
+  their attendance records, view their attendance history, and
+  get notified in case of any discrepancies. The system
+  ensures that attendance data is accurate and accessible,
+  enabling faculty and staff to make informed decisions
+  regarding academic progress and student engagement.
 - In addition to attendance management, the Student Portal
-also provides emergency contact information for the institute.
-This information includes contact numbers and addresses
-for emergency services, medical facilities, and key personnel
-in the institute. This feature ensures that students can
-access help in case of any emergency, and that institute
-authorities can respond quickly and effectively to any crisis
-situation.
+  also provides emergency contact information for the institute.
+  This information includes contact numbers and addresses
+  for emergency services, medical facilities, and key personnel
+  in the institute. This feature ensures that students can
+  access help in case of any emergency, and that institute
+  authorities can respond quickly and effectively to any crisis
+  situation.
 - The Student Portal also provides a result management
-system that enables students to view their academic
-progress, including grades, course credits, and GPA. Thesystem ensures that result data is accurate, secure, and
-accessible, enabling students to make informed decisions
-about their academic pursuits and career goals.
+  system that enables students to view their academic
+  progress, including grades, course credits, and GPA. Thesystem ensures that result data is accurate, secure, and
+  accessible, enabling students to make informed decisions
+  about their academic pursuits and career goals.
 - Finally, the Student Portal also provides a feedback
-submission system that enables students to provide
-feedback to faculty and hostel management. This system
-ensures that feedback is constructive, actionable, and timely,
-enabling faculty and staff to continuously improve their
-teaching, learning, and living environments.
+  submission system that enables students to provide
+  feedback to faculty and hostel management. This system
+  ensures that feedback is constructive, actionable, and timely,
+  enabling faculty and staff to continuously improve their
+  teaching, learning, and living environments.
 
 Overall, the Student Portal is a powerful tool that enhances the
 academic experience of students, faculty, and staff, promoting
 transparency, accountability, and collaboration.
+
 # What Tech Stack We have Used and Why?
 
 - React Native : React Native is a popular framework for developing mobile applications using the JavaScript programming language. It allows developers to build high-quality, native mobile apps for iOS and Android platforms with a single codebase, making it a cost-effective and time-efficient solution for mobile app development. One of the biggest advantages of React Native is that it provides a platform-specific UI component for iOS and Android, which ensures that the app looks and feels native on both platforms. This means that developers can write code once and deploy it to multiple platforms, without compromising on the user experience.
@@ -89,7 +95,7 @@ Follow the following points to run this in your system
     npm i
     ```
 5.  Configure the app from [react native documentation](https://reactnative.dev/).
-5.  Build and Run it
+6.  Build and Run it
 
 <!-- ## Cuntribution Steps
 
@@ -111,4 +117,3 @@ Don't forget to give the project a star! Thanks again!
 - Chaitanya Dhingra
 - Parth Kaushik
 - Ishaan Sharma
-
